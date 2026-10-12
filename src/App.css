@@ -160,6 +160,8 @@
 .fixed { position: fixed; }
 .sticky { position: sticky; }
 .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.inset-x-3 { left: 0.75rem; right: 0.75rem; }
+.bottom-3 { bottom: 0.75rem; }
 .top-0 { top: 0; }
 .z-10 { z-index: 10; }
 .z-20 { z-index: 20; }
@@ -180,10 +182,74 @@
 .cursor-pointer { cursor: pointer; }
 .pointer-events-none { pointer-events: none; }
 .pointer-events-auto { pointer-events: auto; }
-.transition { transition: all 0.15s ease-in-out; }
+.transition { transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1); }
 
-/* Backdrop Blur */
-.backdrop-blur {
+/* Backdrop Blurs & Glass Utilities */
+.backdrop-blur-sm {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.backdrop-blur-lg {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.border-campus-border\/70 {
+  border-color: var(--glass-border);
+}
+.border-campus-border\/60 {
+  border-color: var(--glass-border-subtle);
+}
+.border-campus-border\/50 {
+  border-color: var(--glass-border-subtle);
+}
+.border-campus-border\/40 {
+  border-color: var(--glass-border-subtle);
+}
+.border-campus-bronze\/30 {
+  border-color: rgba(140, 103, 43, 0.3);
+}
+[data-theme="dark"] .border-campus-bronze\/30 {
+  border-color: rgba(212, 167, 85, 0.3);
+}
+
+.bg-campus-bronze-light\/70 {
+  background-color: var(--campus-bronze-light);
+}
+.bg-campus-container\/60 {
+  background-color: var(--glass-bg-subtle);
+}
+.bg-campus-container\/40 {
+  background-color: var(--glass-bg-subtle);
+}
+.bg-campus-card\/40 {
+  background-color: var(--glass-bg-subtle);
+}
+.bg-campus-card\/30 {
+  background-color: var(--glass-bg-subtle);
+}
+
+.glass-btn {
+  background-color: var(--glass-bg);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-sm);
+}
+.glass-btn:hover {
+  background-color: var(--glass-bg-hover);
+  border-color: var(--glass-border-highlight);
+}
+
+.rounded-2xl {
+  border-radius: var(--radius-2xl);
+}
+

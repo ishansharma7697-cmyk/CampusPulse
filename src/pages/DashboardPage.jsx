@@ -5,8 +5,7 @@ import {
   IndianRupee,
   ShieldCheck,
   ArrowRight,
-  FilterX,
-  AlertTriangle
+  FilterX
 } from 'lucide-react';
 import { useTelemetry } from '../context/TelemetryContext.jsx';
 import Card from '../components/common/Card.jsx';
@@ -16,7 +15,7 @@ import TrendLineChart from '../components/charts/TrendLineChart.jsx';
 import BuildingBarChart from '../components/charts/BuildingBarChart.jsx';
 import SeverityDoughnutChart from '../components/charts/SeverityDoughnutChart.jsx';
 import { generateDiagnosticFindings } from '../services/anomalyEngine.js';
-import { formatNumber, formatCurrency, formatElectricity, formatWater } from '../utils/formatters.js';
+import { formatCurrency, formatElectricity, formatWater } from '../utils/formatters.js';
 
 export function DashboardPage({ onSelectTab }) {
   const { filteredDataset, anomalies, financials, resetFilters, filters, setFilter } = useTelemetry();
@@ -120,24 +119,24 @@ export function DashboardPage({ onSelectTab }) {
         </div>
       )}
 
-      {/* KPI Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* KPI Cards Grid (Compact 2x2 on Mobile, 4-col on Desktop) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* KPI 1: Electricity Usage */}
-        <div className="card p-4 hover:border-campus-bronze transition">
+        <div className="card p-3 sm:p-4 hover:border-campus-bronze transition">
           <div className="flex justify-between items-start">
             <div>
-              <span className="text-xs font-semibold text-campus-muted uppercase tracking-wider">
+              <span className="text-[10px] sm:text-xs font-semibold text-campus-muted uppercase tracking-wider">
                 Electricity Usage
               </span>
-              <div className="text-2xl font-bold font-serif text-campus-text mt-1">
+              <div className="text-base sm:text-2xl font-bold font-serif text-campus-text mt-0.5 sm:mt-1">
                 {formatElectricity(financials.totalElectricity)}
               </div>
             </div>
-            <div className="p-2 bg-amber-light text-amber rounded">
-              <Zap size={20} />
+            <div className="p-1.5 sm:p-2 bg-amber-light text-amber rounded-lg">
+              <Zap size={18} />
             </div>
           </div>
-          <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-campus-border">
+          <div className="mt-2.5 sm:mt-3 flex items-center justify-between text-[11px] sm:text-xs pt-2 border-t border-campus-border/60">
             <span className="text-campus-muted">Excess:</span>
             <span className="font-semibold text-amber">
               {formatElectricity(financials.excessElectricity)}
@@ -146,21 +145,21 @@ export function DashboardPage({ onSelectTab }) {
         </div>
 
         {/* KPI 2: Water Consumed */}
-        <div className="card p-4 hover:border-campus-bronze transition">
+        <div className="card p-3 sm:p-4 hover:border-campus-bronze transition">
           <div className="flex justify-between items-start">
             <div>
-              <span className="text-xs font-semibold text-campus-muted uppercase tracking-wider">
+              <span className="text-[10px] sm:text-xs font-semibold text-campus-muted uppercase tracking-wider">
                 Water Consumed
               </span>
-              <div className="text-2xl font-bold font-serif text-campus-text mt-1">
+              <div className="text-base sm:text-2xl font-bold font-serif text-campus-text mt-0.5 sm:mt-1">
                 {formatWater(financials.totalWater)}
               </div>
             </div>
-            <div className="p-2 bg-blue-light text-blue rounded">
-              <Droplets size={20} />
+            <div className="p-1.5 sm:p-2 bg-blue-light text-blue rounded-lg">
+              <Droplets size={18} />
             </div>
           </div>
-          <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-campus-border">
+          <div className="mt-2.5 sm:mt-3 flex items-center justify-between text-[11px] sm:text-xs pt-2 border-t border-campus-border/60">
             <span className="text-campus-muted">Excess:</span>
             <span className="font-semibold text-blue">
               {formatWater(financials.excessWater)}
@@ -169,22 +168,22 @@ export function DashboardPage({ onSelectTab }) {
         </div>
 
         {/* KPI 3: Estimated Financial Loss */}
-        <div className="card p-4 hover:border-campus-bronze transition">
+        <div className="card p-3 sm:p-4 hover:border-campus-bronze transition">
           <div className="flex justify-between items-start">
             <div>
-              <span className="text-xs font-semibold text-campus-muted uppercase tracking-wider">
-                Flagged Waste Loss
+              <span className="text-[10px] sm:text-xs font-semibold text-campus-muted uppercase tracking-wider">
+                Flagged Waste
               </span>
-              <div className="text-2xl font-bold font-serif text-rose mt-1">
+              <div className="text-base sm:text-2xl font-bold font-serif text-rose mt-0.5 sm:mt-1">
                 {formatCurrency(financials.financialLoss)}
               </div>
             </div>
-            <div className="p-2 bg-rose-light text-rose rounded">
-              <IndianRupee size={20} />
+            <div className="p-1.5 sm:p-2 bg-rose-light text-rose rounded-lg">
+              <IndianRupee size={18} />
             </div>
           </div>
-          <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-campus-border">
-            <span className="text-campus-muted">Recovery Target:</span>
+          <div className="mt-2.5 sm:mt-3 flex items-center justify-between text-[11px] sm:text-xs pt-2 border-t border-campus-border/60">
+            <span className="text-campus-muted">Target:</span>
             <span className="font-semibold text-emerald">
               {formatCurrency(financials.savingsTarget)}
             </span>
@@ -192,24 +191,24 @@ export function DashboardPage({ onSelectTab }) {
         </div>
 
         {/* KPI 4: Efficiency Score */}
-        <div className="card p-4 hover:border-campus-bronze transition">
+        <div className="card p-3 sm:p-4 hover:border-campus-bronze transition">
           <div className="flex justify-between items-start">
             <div>
-              <span className="text-xs font-semibold text-campus-muted uppercase tracking-wider">
+              <span className="text-[10px] sm:text-xs font-semibold text-campus-muted uppercase tracking-wider">
                 Efficiency Index
               </span>
-              <div className="text-2xl font-bold font-serif text-campus-text mt-1">
+              <div className="text-base sm:text-2xl font-bold font-serif text-campus-text mt-0.5 sm:mt-1">
                 {financials.efficiencyScore}%
               </div>
             </div>
-            <div className="p-2 bg-emerald-light text-emerald rounded">
-              <ShieldCheck size={20} />
+            <div className="p-1.5 sm:p-2 bg-emerald-light text-emerald rounded-lg">
+              <ShieldCheck size={18} />
             </div>
           </div>
-          <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-campus-border">
-            <span className="text-campus-muted">Flagged Events:</span>
+          <div className="mt-2.5 sm:mt-3 flex items-center justify-between text-[11px] sm:text-xs pt-2 border-t border-campus-border/60">
+            <span className="text-campus-muted">Alerts:</span>
             <Badge variant={anomalies.length > 0 ? 'amber' : 'emerald'}>
-              {anomalies.length} Events
+              {anomalies.length}
             </Badge>
           </div>
         </div>
